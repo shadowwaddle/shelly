@@ -1,0 +1,7 @@
+{
+    "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/firmware/build",
+    "--query-driver=/Users/shadowwaddle/.espressif/tools/**/xtensa-esp32s3-elf-*"
+  ],
+  "cmake.sourceDirectory": "/Users/shadowwaddle/Projects/car/firmware"
+}
