@@ -34,17 +34,16 @@ static QueueHandle_t distanceMailbox = nullptr;
 
 // ---------- Setup helpers ----------
 static i2c_master_bus_handle_t createI2cBus() {
-    i2c_master_bus_config_t i2c_mst_config = {
-        .clk_source = I2C_CLK_SRC_DEFAULT,
-        .i2c_port = I2C_NUM_0,
-        .scl_io_num = config::kImuScl,
-        .sda_io_num = config::kImuSda,
-        .glitch_ignore_cnt = 7,
-        .flags.enable_internal_pullup = true,
-    };
+    i2c_master_bus_config_t cfg = {};
+    cfg.i2c_port          = I2C_NUM_0;
+    cfg.sda_io_num        = config::kImuSda;
+    cfg.scl_io_num        = config::kImuScl;
+    cfg.clk_source        = I2C_CLK_SRC_DEFAULT;
+    cfg.glitch_ignore_cnt = 7;
+    cfg.flags.enable_internal_pullup = true;
 
     i2c_master_bus_handle_t bus;
-    ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, &bus));
+    ESP_ERROR_CHECK(i2c_new_master_bus(&cfg, &bus));
     return bus;
 }
 
